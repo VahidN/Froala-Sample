@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/froala_editor.css" rel="stylesheet" />
+    <link href="~/Content/froala_page.css" rel="stylesheet" />
+    <link href="~/Content/themes/dark.css" rel="stylesheet" />
+</head>
+<body>
+    @RenderBody()
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/Scripts/froala_editor.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="~/Scripts/froala_editor_ie8.min.js"></script>
+    <![endif]-->
+
+    <script src="~/Scripts/langs/fa.js"></script>
+    <script src="~/Scripts/plugins/block_styles.min.js"></script>
+    <script src="~/Scripts/plugins/colors.min.js"></script>
+    <script src="~/Scripts/plugins/file_upload.min.js"></script>
+    <script src="~/Scripts/plugins/font_family.min.js"></script>
+    <script src="~/Scripts/plugins/font_size.min.js"></script>
+    <script src="~/Scripts/plugins/lists.min.js"></script>
+    <script src="~/Scripts/plugins/media_manager.min.js"></script>
+    <script src="~/Scripts/plugins/tables.min.js"></script>
+    <script src="~/Scripts/plugins/video.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

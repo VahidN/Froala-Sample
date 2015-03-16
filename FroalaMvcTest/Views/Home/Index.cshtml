@@ -1,0 +1,89 @@
+﻿@model FroalaMvcTest.Models.User
+@{
+    ViewBag.Title = "Index";
+}
+
+<style type="text/css">
+    /*تنظيم فونت پيش فرض اديتور*/
+    .froala-element {
+        font-family: tahoma;
+        font-size: 9pt;
+    }
+</style>
+
+@*@using (Html.BeginForm(actionName: "Index", controllerName: "Home"))*@
+@using (Ajax.BeginForm(actionName: "Index",
+                       controllerName: "Home",
+                       ajaxOptions: new AjaxOptions { HttpMethod = "POST" },
+                       routeValues: null,
+                       htmlAttributes: new { id = "froalaForm" }))
+{
+    @Html.TextAreaFor(model => model.Description)
+    @Html.ValidationMessageFor(model => model.Description)
+    @*@Html.TextArea(name: "Editor1", htmlAttributes: new Dictionary<string, object>
+                          {
+                            { "data-val", "true"},
+                            { "data-val-required", "(*)"},
+                          })*@
+    <input type="submit" value="ارسال" />
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        // حذف تمام تگ‌هاي يك قطعه متن
+        function removeAllTagsAndTrim(html) {
+            return !html ? "" : jQuery.trim(html.replace(/(<([^>]+)>)/ig, ""));
+        }
+
+        // اين تنظيم براي پردازش اعتبارسنجي اديتور مخفي وب لازم است
+        jQuery.validator.setDefaults({ ignore: ":hidden:not(textarea)" });
+
+        // متد اصلي اعتبارسنجي را ابتدا ذخيره مي‌كنيم
+        jQuery.validator.methods.originalRequired = jQuery.validator.methods.required;
+        // نحوه بازنويسي متد توكار اعتبار سنجي جهت استفاده از يك متد سفارشي
+        jQuery.validator.addMethod("required", function (value, element, param) {
+            value = removeAllTagsAndTrim(value);
+            if (!value) {
+                $(".froala-element").focus();
+                $(".froala-element").css({ "border-color": "red" });
+                return false;
+            }
+            //  فراخواني متد اصلي اعتبار سنجي در صورت شكست تابع سفارشي
+            return jQuery.validator.methods.originalRequired.call(this, value, element, param);
+        }, jQuery.validator.messages.required);
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#Description').editable({
+                buttons: ["bold", "italic", "underline", "strikeThrough", "fontFamily",
+                    "fontSize", "color", "formatBlock", "align", "insertOrderedList",
+                    "insertUnorderedList", "outdent", "indent", "selectAll", "createLink",
+                    "uploadFile",
+                    "insertImage", "insertVideo", "undo", "redo", "html", "save", "inserthorizontalrule"],
+                inlineMode: false,
+                inverseSkin: true,
+                preloaderSrc: '@Url.Content("~/Content/img/preloader.gif")',
+                allowedImageTypes: ["jpeg", "jpg", "png"],
+                height: 300,
+                language: "fa",
+                direction: "rtl",
+                fontList: ["Tahoma, Geneva", "Arial, Helvetica", "Impact, Charcoal"],
+                autosave: true,
+                autosaveInterval: 2500,
+                saveURL: '@Url.Action("FroalaAutoSave", "Home")',
+                saveParams: { postId: "123" },
+                spellcheck: true,
+                plainPaste: true,
+                imageButtons: ["removeImage", "replaceImage", "linkImage"],
+                borderColor: '#00008b',
+                imageUploadURL: '@Url.Action("FroalaUploadImage", "Home")',
+                imageParams: { postId: "123" },
+                enableScript: false,
+                fileUploadURL: '@Url.Action("FroalaUploadFile", "Home")',
+                fileUploadParams: { postId: "123" }
+            });
+        });
+    </script>
+}

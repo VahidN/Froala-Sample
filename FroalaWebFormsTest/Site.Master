@@ -1,0 +1,42 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="FroalaWebFormsTest.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link href="Content/font-awesome.css" rel="stylesheet" />
+    <link href="Content/froala_editor.css" rel="stylesheet" />
+    <link href="Content/froala_page.css" rel="stylesheet" />
+    <link href="Content/themes/dark.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-1.11.1.min.js"></script>
+    <script src="Scripts/froala_editor.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="Scripts/froala_editor_ie8.min.js"></script>
+    <![endif]-->
+
+    <script src="Scripts/langs/fa.js"></script>
+    <script src="Scripts/plugins/block_styles.min.js"></script>
+    <script src="Scripts/plugins/colors.min.js"></script>
+    <script src="Scripts/plugins/file_upload.min.js"></script>
+    <script src="Scripts/plugins/font_family.min.js"></script>
+    <script src="Scripts/plugins/font_size.min.js"></script>
+    <script src="Scripts/plugins/lists.min.js"></script>
+    <script src="Scripts/plugins/media_manager.min.js"></script>
+    <script src="Scripts/plugins/tables.min.js"></script>
+    <script src="Scripts/plugins/video.min.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
