@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using FroalaMvcTest.Models;
+using Microsoft.Security.Application;
 
 namespace FroalaMvcTest.Controllers
 {
@@ -31,6 +32,8 @@ namespace FroalaMvcTest.Controllers
         [ValidateInput(false)]
         public ActionResult FroalaAutoSave(string body, int? postId) // نام پارامتر بادي را تغيير ندهيد
         {
+            body = Sanitizer.GetSafeHtml(body);
+
             //todo: save body ...
             return new EmptyResult();
         }
